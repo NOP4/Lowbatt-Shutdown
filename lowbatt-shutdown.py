@@ -26,6 +26,5 @@ battery = psutil.sensors_battery()
 
 print("Current charge: " + str(int(battery.percent)) + "%")
 
-if (battery.percent < LOWBATT_SHUTDOWN):
-    os.system("shutdown /s /t 1")
-
+if ((battery.percent < LOWBATT_SHUTDOWN) and (battery.power_plugged == False)):
+    os.system("/usr/sbin/shutdown -h")
